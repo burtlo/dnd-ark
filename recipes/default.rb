@@ -18,8 +18,11 @@
 # limitations under the License.
 #
 
-Array(node['ark']['package_dependencies']).each do |pkg|
-  package pkg
+node['ark']['package_dependencies'].each do |name|
+  package name
 end
 
-include_recipe "seven_zip" if node['platform_family'] == 'windows'
+ark 'redis' do
+  source "http://download.redis.io/releases/redis-2.8.9.tar.gz"
+  version '2.8.9'
+end
